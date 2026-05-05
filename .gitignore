@@ -1,0 +1,10 @@
+# Neovim specific ignore rules
+**/site/pack/*
+**/site/packer_compiled.lua
+**/.cache
+**/.git/objects/
+**/*.swp
+**/*~
+**/*.local.lua
+**/backup
+**/.DS_Store
