@@ -1,4 +1,8 @@
 Lightweight neovim configuration for editing python/html/javascript/c/c++ scripts.
+Step 1: Download the repo in ~/.config directory
+Step 2: Rename the directory to nvim
+Step 3: Run 'nvim' in the terminal. Neovim will auto install lazy.nvim and plugins.
+
 For editing and compiling latex, make sure to do the following:
 1. Download the appropriate latex compiler, e.g. mactex
 2. Download Skim for displaying PDF
