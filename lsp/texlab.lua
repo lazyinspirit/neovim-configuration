@@ -6,10 +6,20 @@ return {
   root_markers = { ".git", ".latexmkrc", ".texlabrc", "texlab.toml" },
   settings = {
     texlab = {
-      build = { executable = "latexmk" },
+      build = {
+        executable = "latexmk",
+        args = { "-pdf", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%f" },
+        onSave = false,  -- Let VimTeX handle compilation
+        forwardSearchAfter = false,
+      },
+      -- Forward search via Skim's displayline script
       forwardSearch = {
-        executable = "skim", -- Or "zathura", "okular", etc.
-        args = { "--synctex-forward", "%l:1:%f", "%p" },
+        executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
+        args = { "-revert", "%l", "%p", "%f" },
+      },
+      -- Disable texlab's chktex if you want (optional)
+      chktex = {
+        onOpenAndSave = false,
       },
     },
   },

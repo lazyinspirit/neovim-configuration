@@ -19,15 +19,36 @@ return {
     },
   },
 
+  -- Colorscheme: black background, red/green/blue/yellow/purple/grey palette [1]
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "dark", -- pure black background variant
+      colors = {
+        bg0 = "#000000", -- force true black background
+      },
+    },
+    config = function(_, opts)
+      require("onedark").setup(opts)
+      vim.cmd("colorscheme onedark")
+    end,
+  },
+
   -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
-        "c", "python", "html", "css", "javascript", "latex", "lua", "vim"
+        "c", "python", "html", "css", "javascript", "lua", "vim"
+        -- latex excluded: VimTeX handles LaTeX highlighting
       },
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        disable = { "latex" },
+      },
       indent = { enable = true },
     },
   },

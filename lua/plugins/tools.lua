@@ -14,7 +14,7 @@ return {
     build = ":TSUpdate",
     opts = {
       ensure_installed = { "c", "python", "html", "css", "javascript", "latex", "lua" },
-      highlight = { enable = true },
+      highlight = { enable = true, disable = { "latex" }, },
     },
   },
 
