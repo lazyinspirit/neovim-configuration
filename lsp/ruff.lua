@@ -1,14 +1,13 @@
 -- ~/.config/nvim/lsp/ruff.lua
 -- Ruff: fast Python linter + formatter as an LSP. Install:
---   pipx install ruff   (or: brew install ruff)
+--   brew install ruff   (or: pipx install ruff)
 -- Runs alongside pyright; pyright handles types/hover, ruff handles lint+format.
+-- Disable ruff's hover provider to avoid duplicate popups with pyright.
 return {
   cmd = { "ruff", "server" },
   filetypes = { "python" },
   root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
-  init_options = {
-    settings = {
-      -- Let pyright own hover so we don't see duplicate diagnostics popups.
-    },
-  },
+  on_attach = function(client, _)
+    client.server_capabilities.hoverProvider = false
+  end,
 }
