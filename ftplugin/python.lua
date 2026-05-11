@@ -1,2 +1,4 @@
 -- ~/.config/nvim/ftplugin/python.lua
-vim.lsp.enable('pyright')
+-- Pyright owns types/hover; ruff owns lint + format.
+vim.lsp.enable("pyright")
+vim.lsp.enable("ruff")
