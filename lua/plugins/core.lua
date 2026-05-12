@@ -76,11 +76,14 @@ return {
       end
       if #missing > 0 then ts.install(missing) end
 
+      -- zsh has no dedicated parser; reuse the bash parser for it.
+      vim.treesitter.language.register("bash", "zsh")
+
       -- Start highlighter on FileType for languages with a parser available.
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "c", "cpp", "python", "html", "css",
                     "javascript", "typescript", "typescriptreact",
-                    "lua", "vim", "json", "bash", "sh", "markdown" },
+                    "lua", "vim", "json", "bash", "sh", "zsh", "markdown" },
         callback = function(args)
           local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
           if lang and pcall(vim.treesitter.start, args.buf, lang) then
