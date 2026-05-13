@@ -65,6 +65,9 @@ LSP servers and formatters are **not** auto-installed — they live outside the
 config directory. Install everything below before opening files.
 
 ```bash
+# Treesitter parser compiler (required for syntax highlighting)
+brew install tree-sitter-cli
+
 # Python
 brew install pyright ruff
 
