@@ -45,6 +45,8 @@ syntax highlighting.
 - **Fuzzy finding** — Telescope for files, live grep, buffers, help, and recent
   files.
 - **Git integration** — Gitsigns for hunk navigation and inline blame.
+- **Soft wrap** — long lines wrap visually at the window edge (`wrap`,
+  `linebreak`, `breakindent`); no newlines are inserted into the file.
 
 ---
 

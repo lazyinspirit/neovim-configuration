@@ -11,7 +11,9 @@ opt.cursorline = true         -- highlight current line
 opt.termguicolors = true      -- 24-bit colors (needed for onedark)
 opt.scrolloff = 8             -- keep 8 lines of context around cursor
 opt.sidescrolloff = 8
-opt.wrap = false              -- no soft wrap by default
+opt.wrap = true               -- soft-wrap long lines at the window edge
+opt.linebreak = true          -- break at word boundaries, not mid-word
+opt.breakindent = true        -- wrapped lines continue at the same indent level
 opt.showmode = false          -- lualine already shows mode
 
 -- Indentation: 2-space default, ftplugin overrides for languages that want 4
