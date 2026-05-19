@@ -41,6 +41,8 @@ syntax highlighting.
   buffer/global toggle commands.
 - **Autocompletion** — `blink.cmp` with LSP, buffer, path, and snippet sources.
   VimTeX omnifunc wired in for LaTeX.
+- **HTML tag auto-close/rename** — `nvim-ts-autotag` auto-inserts closing tags
+  on `>` and keeps paired tags in sync when one is renamed.
 - **LaTeX workflow** — VimTeX + Skim with SyncTeX forward/inverse search.
 - **Fuzzy finding** — Telescope for files, live grep, buffers, help, and recent
   files.
@@ -204,4 +206,5 @@ Leader key: `<Space>`
 | `saghen/blink.cmp` | Autocompletion |
 | `stevearc/conform.nvim` | Format on save |
 | `williamboman/mason.nvim` | LSP / tool installer UI |
+| `windwp/nvim-ts-autotag` | HTML/JSX/TSX tag auto-close and paired rename |
 | `lervag/vimtex` | LaTeX editing, compilation, SyncTeX |

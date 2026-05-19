@@ -1,5 +1,19 @@
 -- ~/.config/nvim/lua/plugins/lang.lua
 return {
+  -- Auto-close and auto-rename HTML/JSX/TSX tags using Treesitter.
+  -- '>' closes the opening tag; renaming an opening tag renames its closing tag in sync.
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      opts = {
+        enable_close = true,           -- auto-insert closing tag on '>'
+        enable_rename = true,          -- keep closing tag in sync when renaming opening tag
+        enable_close_on_slash = true,  -- close on '</'
+      },
+    },
+  },
+
   -- VimTeX: LaTeX editing, compilation, and SyncTeX
   {
     "lervag/vimtex",
