@@ -46,7 +46,15 @@ syntax highlighting.
 - **LaTeX workflow** — VimTeX + Skim with SyncTeX forward/inverse search.
 - **Fuzzy finding** — Telescope for files, live grep, buffers, help, and recent
   files.
-- **Git integration** — Gitsigns for hunk navigation and inline blame.
+- **Git integration** — Gitsigns for hunk navigation and inline blame, plus
+  a `<Leader>ga` shortcut that prompts for a message and runs
+  `git add . && git commit && git push` in one go.
+- **Status line** — `lualine` with the current working directory always shown
+  alongside the filename. Each window also has a `winbar` with a clickable
+  `✕` in the top-right corner that closes the pane.
+- **Vertical scrollbar** — `nvim-scrollview` draws a draggable scrollbar on
+  the right edge of every window; click-and-drag the thumb to navigate long
+  files.
 - **Soft wrap** — long lines wrap visually at the window edge (`wrap`,
   `linebreak`, `breakindent`); no newlines are inserted into the file.
 
@@ -89,6 +97,10 @@ brew install node
 npm install -g typescript typescript-language-server \
                vscode-langservers-extracted \
                prettier
+
+# Claude Code CLI (required for the AI integration)
+# Install via the official installer: https://docs.claude.com/claude-code
+# Confirm `claude --version` works before opening Neovim.
 ```
 
 Confirm attachment with `:LspInfo` after opening a file of the relevant type.
@@ -165,6 +177,7 @@ Leader key: `<Space>`
 | `[c` | Previous hunk |
 | `<Leader>gp` | Preview hunk |
 | `<Leader>gb` | Blame line |
+| `<Leader>ga` | Prompt for message, then `git add . && commit && push` |
 
 ### File tree (nvim-tree)
 
@@ -172,6 +185,21 @@ Leader key: `<Space>`
 |---|---|
 | `<Leader>tt` | Toggle tree |
 | `<Leader>tf` | Reveal current file |
+
+### Claude Code
+
+| Key | Action |
+|---|---|
+| `<Leader>cc` | Toggle Claude terminal |
+| `<Leader>cf` | Focus Claude window |
+| `<Leader>cr` | Resume previous session |
+| `<Leader>cC` | Continue last conversation |
+| `<Leader>cm` | Select model |
+| `<Leader>cb` | Send current buffer to Claude |
+| `<Leader>cs` (visual) | Send selection to Claude |
+| `<Leader>cs` (nvim-tree) | Add file under cursor |
+| `<Leader>cy` | Accept proposed diff |
+| `<Leader>cn` | Reject proposed diff |
 
 ### LaTeX (VimTeX — `.tex` files only)
 
@@ -203,8 +231,10 @@ Leader key: `<Space>`
 | `nvim-tree/nvim-tree.lua` | File explorer |
 | `nvim-telescope/telescope.nvim` | Fuzzy finder |
 | `lewis6991/gitsigns.nvim` | Git hunk signs + blame |
+| `dstein64/nvim-scrollview` | Draggable vertical scrollbar |
 | `saghen/blink.cmp` | Autocompletion |
 | `stevearc/conform.nvim` | Format on save |
 | `williamboman/mason.nvim` | LSP / tool installer UI |
 | `windwp/nvim-ts-autotag` | HTML/JSX/TSX tag auto-close and paired rename |
 | `lervag/vimtex` | LaTeX editing, compilation, SyncTeX |
+| `coder/claudecode.nvim` | Claude Code CLI integration (chat, send, diff review) |

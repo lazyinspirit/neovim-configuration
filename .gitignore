@@ -8,3 +8,6 @@
 **/*.local.lua
 **/backup
 **/.DS_Store
+
+# Local Claude Code state (settings.local.json, agent worktrees)
+.claude/

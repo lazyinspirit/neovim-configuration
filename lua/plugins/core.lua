@@ -31,11 +31,91 @@ return {
     },
   },
 
-  -- Status Line
+  -- Status line + per-window winbar with a clickable ✕ close button
+  -- in the top-right corner of every (non-utility) pane.
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = { options = { theme = "auto" } },
+    opts = {
+      options = {
+        theme = "auto",
+        -- Skip winbar on plugin/utility windows where a close X would be
+        -- confusing or duplicate existing UI. Statusline is unaffected.
+        disabled_filetypes = {
+          winbar = { "NvimTree", "TelescopePrompt", "lazy", "mason", "help", "qf" },
+        },
+      },
+      -- Statusline sections. These are the lualine defaults plus a cwd
+      -- component prepended to `lualine_c` so the working directory is
+      -- always visible. `fnamemodify(..., ":~")` shows the path with
+      -- $HOME collapsed to ~ for readability.
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = {
+          {
+            function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":~") end,
+            icon = "",
+          },
+          "filename",
+        },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+      -- Inactive panes also show cwd + filename. Defaults only show
+      -- filename, so we mirror the active layout for "at all times".
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {
+          {
+            function() return vim.fn.fnamemodify(vim.fn.getcwd(), ":~") end,
+            icon = "",
+          },
+          "filename",
+        },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      -- `lualine_z` is the rightmost winbar section — gives us the
+      -- top-right corner of each pane.
+      winbar = {
+        lualine_z = {
+          {
+            function() return " ✕ " end,
+            -- Lualine on_click signature: (component_id, button, modifiers).
+            -- Only the primary (left) mouse button should close.
+            on_click = function(_, button)
+              if button ~= "l" then return end
+              if vim.fn.winnr("$") > 1 then
+                vim.cmd("close")     -- close just this split
+              else
+                vim.cmd("bdelete")   -- last window — drop the buffer, keep Neovim open
+              end
+            end,
+          },
+        },
+      },
+      -- Same button on inactive panes so the user doesn't have to focus
+      -- a pane before closing it.
+      inactive_winbar = {
+        lualine_z = {
+          {
+            function() return " ✕ " end,
+            on_click = function(_, button)
+              if button ~= "l" then return end
+              if vim.fn.winnr("$") > 1 then
+                vim.cmd("close")
+              else
+                vim.cmd("bdelete")
+              end
+            end,
+          },
+        },
+      },
+    },
   },
 
   -- Colorscheme: pure-black variant
@@ -51,6 +131,20 @@ return {
       require("onedark").setup(opts)
       vim.cmd("colorscheme onedark")
     end,
+  },
+
+  -- Draggable vertical scrollbar. Click the thumb and drag with the mouse
+  -- to scroll long files. Relies on `mouse = "a"` from lua/options.lua.
+  {
+    "dstein64/nvim-scrollview",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      base = "right",            -- flush with the right edge of each window
+      signs_on_startup = {},     -- cursor-position thumb only — no git/diag/search marks
+      winblend = 30,             -- partial transparency so the bar doesn't hide text under it
+      excluded_filetypes = { "NvimTree", "TelescopePrompt", "lazy", "mason" },
+      always_show = false,       -- hide on buffers that fit on screen
+    },
   },
 
   -- Treesitter (MAIN branch API — full rewrite, requires Neovim 0.12+).
