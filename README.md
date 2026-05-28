@@ -41,6 +41,14 @@ syntax highlighting.
   buffer/global toggle commands.
 - **Autocompletion** — `blink.cmp` with LSP, buffer, path, and snippet sources.
   VimTeX omnifunc wired in for LaTeX.
+- **Auto-pairs** — `nvim-autopairs` closes brackets and quotes automatically,
+  skips over existing closing characters, and is Treesitter-aware (no pairing
+  inside strings or comments).
+- **Comment toggling** — `Comment.nvim` adds `gcc` (line) and `gb` (block)
+  operators. Composes with any motion (`gc5j`, `gcip`) and works in visual mode.
+  Uses the correct comment syntax per filetype via Treesitter.
+- **Keymap discovery** — `which-key.nvim` shows a popup of available bindings
+  when you pause after pressing `<Leader>`.
 - **HTML tag auto-close/rename** — `nvim-ts-autotag` auto-inserts closing tags
   on `>` and keeps paired tags in sync when one is renamed.
 - **LaTeX workflow** — VimTeX + Skim with SyncTeX forward/inverse search.
@@ -240,6 +248,9 @@ Leader key: `<Space>`
 | `saghen/blink.cmp` | Autocompletion |
 | `stevearc/conform.nvim` | Format on save |
 | `williamboman/mason.nvim` | LSP / tool installer UI |
+| `numToStr/Comment.nvim` | Comment toggling (`gcc`, `gb`, motions, visual) |
+| `windwp/nvim-autopairs` | Auto-close brackets and quotes |
+| `folke/which-key.nvim` | Keymap popup on `<Leader>` pause |
 | `windwp/nvim-ts-autotag` | HTML/JSX/TSX tag auto-close and paired rename |
 | `lervag/vimtex` | LaTeX editing, compilation, SyncTeX |
 | `coder/claudecode.nvim` | Claude Code CLI integration (chat, send, diff review) |

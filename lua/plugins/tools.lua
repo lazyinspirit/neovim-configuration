@@ -1,6 +1,29 @@
 -- ~/.config/nvim/lua/plugins/tools.lua
--- Tooling: LSP installer, formatters.
+-- Tooling: LSP installer, formatters, and editor ergonomics.
 return {
+  -- Comment toggling: gcc (line), gb (block), gc + motion, gc in visual
+  {
+    "numToStr/Comment.nvim",
+    event = "BufReadPost",
+    opts = {},
+  },
+
+  -- Auto-close brackets and quotes; skips over existing closing characters.
+  -- check_ts uses Treesitter to avoid pairing inside strings and comments.
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = { check_ts = true },
+  },
+
+  -- Shows available keybindings in a popup when you pause after <leader>.
+  -- Reads the desc= fields already set on all existing mappings.
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+
   -- Installer for LSPs, DAPs, and Formatters
   {
     "williamboman/mason.nvim",
