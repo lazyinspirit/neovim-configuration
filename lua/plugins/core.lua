@@ -8,11 +8,26 @@ return {
       { "<leader>tt", "<cmd>NvimTreeToggle<cr>",   desc = "Toggle file tree" },
       { "<leader>tf", "<cmd>NvimTreeFindFile<cr>", desc = "Focus tree on current file" },
     },
-    opts = {
-      view = { width = 30 },
-      renderer = { group_empty = true },
-      filters = { dotfiles = false },
-    },
+    config = function()
+      -- Pressing Enter on a directory expands it and changes Neovim's CWD.
+      local function on_attach(bufnr)
+        local api = require('nvim-tree.api')
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set('n', '<CR>', function()
+          local node = api.tree.get_node_under_cursor()
+          if node and node.type == 'directory' then
+            vim.cmd.cd(node.absolute_path)
+          end
+          api.node.open.edit()
+        end, { buffer = bufnr, noremap = true, silent = true, desc = "Open / cd into dir" })
+      end
+      require('nvim-tree').setup({
+        on_attach = on_attach,
+        view     = { width = 30 },
+        renderer = { group_empty = true },
+        filters  = { dotfiles = false },
+      })
+    end,
   },
 
   -- Git signs in sign column + hunk navigation

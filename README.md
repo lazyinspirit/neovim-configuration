@@ -46,9 +46,12 @@ syntax highlighting.
 - **LaTeX workflow** — VimTeX + Skim with SyncTeX forward/inverse search.
 - **Fuzzy finding** — Telescope for files, live grep, buffers, help, and recent
   files.
-- **Git integration** — Gitsigns for hunk navigation and inline blame, plus
-  a `<Leader>ga` shortcut that prompts for a message and runs
-  `git add . && git commit && git push` in one go.
+- **Git integration** — Gitsigns for hunk navigation and inline blame.
+  `<Leader>ga` stages all changes, prompts for a commit message, commits, and
+  pushes. `<Leader>gl` pulls from remote. Both report output via a notification.
+- **File tree CWD sync** — pressing `<Enter>` on a directory in nvim-tree
+  changes Neovim's working directory to that directory in addition to expanding
+  the node.
 - **Status line** — `lualine` with the current working directory always shown
   alongside the filename. Each window also has a `winbar` with a clickable
   `✕` in the top-right corner that closes the pane.
@@ -169,15 +172,16 @@ Leader key: `<Space>`
 | `<Leader>fh` | Help tags |
 | `<Leader>fr` | Recent files |
 
-### Git (Gitsigns)
+### Git
 
 | Key | Action |
 |---|---|
-| `]c` | Next hunk |
-| `[c` | Previous hunk |
-| `<Leader>gp` | Preview hunk |
-| `<Leader>gb` | Blame line |
-| `<Leader>ga` | Prompt for message, then `git add . && commit && push` |
+| `<Leader>ga` | Stage all, prompt for commit message, commit, and push |
+| `<Leader>gl` | Pull from remote |
+| `]c` | Next hunk (Gitsigns) |
+| `[c` | Previous hunk (Gitsigns) |
+| `<Leader>gp` | Preview hunk (Gitsigns) |
+| `<Leader>gb` | Blame line (Gitsigns) |
 
 ### File tree (nvim-tree)
 
@@ -185,6 +189,7 @@ Leader key: `<Space>`
 |---|---|
 | `<Leader>tt` | Toggle tree |
 | `<Leader>tf` | Reveal current file |
+| `<Enter>` (on dir) | Expand directory and change Neovim's CWD to it |
 
 ### Claude Code
 
