@@ -1,6 +1,18 @@
 -- ~/.config/nvim/lua/keymaps.lua
 -- Global keymaps not tied to a specific plugin.
 
+-- Cursor movement remaps
+vim.keymap.set('n', '<A-l>', 'w', { desc = 'Next word' })
+vim.keymap.set('n', '<A-h>', 'b', { desc = 'Previous word' })
+vim.keymap.set('n', '<C-h>', '0', { desc = 'Beginning of line' })
+vim.keymap.set('n', '<C-l>', '$', { desc = 'End of line' })
+
+-- Page scrolling remaps
+vim.keymap.set('n', '<C-k>', '<C-b>', { desc = 'Page up' })
+vim.keymap.set('n', '<C-j>', '<C-f>', { desc = 'Page down' })
+vim.keymap.set('n', '<A-k>', '<C-u>', { desc = 'Half page up' })
+vim.keymap.set('n', '<A-j>', '<C-d>', { desc = 'Half page down' })
+
 -- <leader>ga: stage all changes (including untracked), commit with a prompted
 -- message, then push to the remote. Aborts cleanly at any failure.
 vim.keymap.set('n', '<leader>ga', function()

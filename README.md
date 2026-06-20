@@ -146,6 +146,19 @@ Confirm attachment with `:LspInfo` after opening a file of the relevant type.
 
 Leader key: `<Space>`
 
+### Cursor movement & navigation (custom remaps)
+
+| Key | Action |
+|---|---|
+| `<A-h>` | Previous word (was `b`) |
+| `<A-l>` | Next word (was `w`) |
+| `<C-h>` | Beginning of line (was `0`) |
+| `<C-l>` | End of line (was `$`) |
+| `<C-k>` | Page up (was `<C-b>`) |
+| `<C-j>` | Page down (was `<C-f>`) |
+| `<A-k>` | Half page up (was `<C-u>`) |
+| `<A-j>` | Half page down (was `<C-d>`) |
+
 ### LSP (active when a server is attached)
 
 | Key | Action |
